@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wireframes — Sistema de segmentación de copas UAV</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F2F2F0;
+  --ink:#1A1A18;
+  --line:#8C8C88;
+  --line-soft:#C4C4C0;
+  --fill:#DEDEDA;
+  --fill-2:#CACAC6;
+  --fill-3:#B4B4B0;
+  --white:#FFF;
+  --note:#0F62FE;
+  --dim:#6E6E6A;
+  --sans:"Archivo",system-ui,-apple-system,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:var(--sans);font-size:13px;-webkit-font-smoothing:antialiased;
+}
+.page{max-width:1180px;margin:0 auto;padding:44px 26px 90px}
+
+/* ---------- encabezado del documento ---------- */
+.doc-head{border-bottom:2px solid var(--ink);padding-bottom:20px;margin-bottom:14px}
+.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--dim)}
+h1{font-size:30px;font-weight:700;letter-spacing:-.02em;margin:8px 0 6px;max-width:22ch;line-height:1.1}
+.doc-head p{margin:0;color:var(--dim);max-width:62ch;line-height:1.6}
+.keyrow{display:flex;flex-wrap:wrap;gap:22px;margin-top:18px;font-family:var(--mono);font-size:11px;color:var(--dim)}
+.keyrow span{display:flex;align-items:center;gap:7px}
+.kbox{width:22px;height:12px;border:1px solid var(--line);display:inline-block}
+.kbox.f{background:var(--fill)}
+.kbox.i{background:var(--white)}
+.kbox.a{background:var(--fill-3)}
+
+/* ---------- estructura de cada lámina ---------- */
+.plate{margin-top:52px;page-break-inside:avoid}
+.plate-head{display:flex;align-items:baseline;gap:14px;border-bottom:1px solid var(--line);padding-bottom:9px;margin-bottom:0}
+.plate-head .num{font-family:var(--mono);font-size:12px;color:var(--dim)}
+.plate-head h2{font-size:18px;font-weight:600;margin:0}
+.plate-head .role{margin-left:auto;font-family:var(--mono);font-size:11px;color:var(--dim);text-align:right}
+
+.layout{border:1px solid var(--line);border-top:0;background:var(--white)}
+.frame{padding:18px;background:
+  repeating-linear-gradient(0deg,transparent 0 23px,rgba(0,0,0,.022) 23px 24px);}
+
+/* ---------- primitivas de wireframe ---------- */
+.wf{border:1px solid var(--line);background:var(--white)}
+.box{border:1px solid var(--line-soft);background:var(--fill)}
+.h{display:flex}
+.v{display:flex;flex-direction:column}
+.cap{
+  font-family:var(--mono);font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--dim);
+}
+.ph{ /* barra de texto simulado */
+  height:7px;background:var(--fill-2);border-radius:1px;
+}
+.ph.s{width:38%} .ph.m{width:62%} .ph.l{width:86%} .ph.xl{width:100%}
+.ph.dark{background:var(--fill-3)}
+.stack > *{margin-bottom:6px}
+.stack > *:last-child{margin-bottom:0}
+.btnw{border:1px solid var(--line);background:var(--fill);height:24px;display:grid;place-items:center;padding:0 10px}
+.btnw.solid{background:var(--fill-3)}
+.inputw{border:1px solid var(--line-soft);background:var(--white);height:26px;display:flex;align-items:center;padding:0 8px}
+.marker{
+  position:absolute;width:19px;height:19px;border-radius:50%;background:var(--note);color:#fff;
+  display:grid;place-items:center;font-size:10px;font-weight:700;z-index:5;
+  box-shadow:0 0 0 2.5px var(--white);
+}
+.rel{position:relative}
+
+/* barra superior de app */
+.appbar{height:40px;align-items:center;gap:10px;padding:0 10px;border-bottom:1px solid var(--line);background:var(--fill)}
+.logo{width:22px;height:22px;border:1px solid var(--line);background:var(--fill-3)}
+.appbar .sep{width:1px;height:22px;background:var(--line-soft)}
+
+/* zonas del visor */
+.viewer{height:392px}
+.panel-l{width:170px;border-right:1px solid var(--line);padding:10px;background:var(--white)}
+.panel-r{width:196px;border-left:1px solid var(--line);padding:10px;background:var(--white)}
+.canvas{
+  flex:1;position:relative;min-width:0;
+  background:
+    linear-gradient(135deg,rgba(0,0,0,.05) 25%,transparent 25%) -6px 0/12px 12px,
+    linear-gradient(225deg,rgba(0,0,0,.05) 25%,transparent 25%) -6px 0/12px 12px,
+    var(--fill-2);
+}
+.canvas .lbl-c{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  font-family:var(--mono);font-size:10px;letter-spacing:.09em;text-transform:uppercase;color:#6E6E6A;
+  text-align:center;line-height:1.7;
+}
+.tools{position:absolute;top:9px;left:9px;display:flex;gap:4px}
+.tools i{width:22px;height:22px;border:1px solid var(--line);background:var(--white);display:block}
+.tools i:first-child{background:var(--fill-3)}
+.chip-tr{position:absolute;top:9px;right:9px;width:96px;border:1px solid var(--line);background:var(--white);padding:6px}
+.chip-bl{position:absolute;bottom:9px;left:9px;width:120px}
+.chip-br{position:absolute;bottom:9px;right:9px;border:1px solid var(--line);background:var(--white);padding:4px 7px}
+.scale i{display:block;height:5px;border:1px solid var(--line);border-top:0;background:linear-gradient(90deg,var(--line) 0 25%,transparent 25% 50%,var(--line) 50% 75%,transparent 75%)}
+
+.rowline{display:flex;align-items:center;gap:7px;padding:4px 0}
+.chk{width:11px;height:11px;border:1px solid var(--line);background:var(--white);flex:0 0 auto}
+.chk.on{background:var(--fill-3)}
+.slider{height:3px;background:var(--fill-2);position:relative;margin:8px 0 4px}
+.slider::after{content:"";position:absolute;left:44%;top:-4px;width:11px;height:11px;border-radius:50%;background:var(--fill-3);border:1px solid var(--line)}
+.divider{height:1px;background:var(--line-soft);margin:11px -10px}
+
+.statusbar{height:34px;align-items:center;border-top:1px solid var(--line);background:var(--fill);padding:0 10px;gap:0}
+.statusbar .c{padding:0 14px;border-right:1px solid var(--line-soft);flex:0 0 auto}
+.statusbar .c:first-child{padding-left:0}
+
+/* rejilla de tarjetas */
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:11px}
+.cardw{border:1px solid var(--line);background:var(--white)}
+.cardw .thumb{height:64px;background:
+  linear-gradient(135deg,rgba(0,0,0,.05) 25%,transparent 25%) -6px 0/12px 12px,
+  linear-gradient(225deg,rgba(0,0,0,.05) 25%,transparent 25%) -6px 0/12px 12px,
+  var(--fill-2);border-bottom:1px solid var(--line-soft)}
+.cardw .cbody{padding:9px}
+.cardw.add{border-style:dashed;display:grid;place-items:center;color:var(--dim);font-size:20px}
+
+/* formulario */
+.formw{max-width:none;display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.fsec{border:1px solid var(--line);background:var(--white);padding:12px}
+.fsec .cap{display:block;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid var(--line-soft)}
+.dropw{border:1px dashed var(--line);background:var(--fill);height:74px;display:grid;place-items:center}
+.fieldw{margin-bottom:10px}
+.fieldw .cap{display:block;margin-bottom:4px}
+.progress{height:6px;background:var(--fill-2);border:1px solid var(--line-soft)}
+.progress i{display:block;height:100%;background:var(--fill-3);width:64%}
+.logw{background:var(--fill);border:1px solid var(--line-soft);padding:9px}
+.logw .ph{margin-bottom:5px;background:var(--fill-3)}
+
+/* métricas */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:11px;margin-bottom:12px}
+.statw{border:1px solid var(--line);background:var(--white);padding:11px}
+.bignum{height:22px;width:52px;background:var(--fill-3);margin:7px 0 6px}
+.tablew{border:1px solid var(--line);background:var(--white);padding:11px}
+.trow{display:grid;grid-template-columns:2fr repeat(5,1fr);gap:9px;align-items:center;padding:6px 0;border-bottom:1px solid var(--line-soft)}
+.trow:last-child{border-bottom:0}
+.trow.head .ph{background:var(--fill-3);height:6px}
+.chartw{border:1px solid var(--line);background:var(--white);padding:11px;margin-bottom:11px}
+.bars{display:flex;align-items:flex-end;gap:6px;height:78px;border-bottom:1px solid var(--line);padding-top:6px}
+.bars i{flex:1;background:var(--fill-3);border:1px solid var(--line-soft);border-bottom:0}
+.expw{display:flex;flex-wrap:wrap;gap:6px}
+.split{display:grid;grid-template-columns:1.3fr 1fr;gap:12px;align-items:start}
+
+/* estados */
+.states{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:6px}
+.statew{border:1px solid var(--line);background:var(--white);padding:14px;min-height:132px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:9px;text-align:center}
+.statew .icon{width:30px;height:30px;border:1.5px solid var(--line);border-radius:50%}
+.statew .cap{color:var(--ink);font-weight:500}
+
+/* cierre */
+.closing{margin-top:56px;border-top:2px solid var(--ink);padding-top:20px}
+.closing h3{font-size:15px;margin:0 0 12px;font-weight:600}
+.closing ol{margin:0;padding-left:19px;color:var(--dim);line-height:1.75;max-width:74ch}
+.closing li{margin-bottom:7px}
+.closing b{color:var(--ink);font-weight:600}
+
+@media (max-width:860px){
+  .cards,.stats{grid-template-columns:repeat(2,1fr)}
+  .formw,.split,.states{grid-template-columns:1fr}
+  .panel-l,.panel-r{display:none}
+}
+@media print{
+  body{background:#fff}
+  .plate{page-break-inside:avoid;margin-top:34px}
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header class="doc-head">
+    <div class="eyebrow">Wireframes de baja fidelidad · v1</div>
+    <h1>Sistema de segmentación de copas de árbol en imágenes UAV</h1>
+    <p>Estructura y jerarquía de las cuatro pantallas principales. Sin color, tipografía ni marca: lo único que se decide aquí es qué información va en cada pantalla, cuánto peso tiene y en qué orden la recorre el usuario.</p>
+    <div class="keyrow">
+      <span><i class="kbox f"></i> Bloque de contenido</span>
+      <span><i class="kbox i"></i> Control o campo editable</span>
+      <span><i class="kbox a"></i> Elemento activo o destacado</span>
+    </div>
+  </header>
+
+  <!-- ================= LÁMINA 1 ================= -->
+  <section class="plate">
+    <div class="plate-head">
+      <span class="num">01</span>
+      <h2>Lista de vuelos</h2>
+      <span class="role">Punto de entrada · elegir o crear</span>
+    </div>
+    <div class="layout">
+      <div class="frame">
+        <div class="wf rel">
+          <div class="h appbar">
+            <div class="logo"></div>
+            <div class="ph dark" style="width:74px"></div>
+            <div class="sep"></div>
+            <div class="ph" style="width:110px"></div>
+            <div style="margin-left:auto"><div class="btnw solid"><span class="cap">Nuevo vuelo</span></div></div>
+          </div>
+          <div style="padding:14px">
+            <div class="stack" style="margin-bottom:14px">
+              <div class="ph dark" style="width:120px;height:11px"></div>
+              <div class="ph l"></div>
+            </div>
+            <div class="rel">
+              <div class="cards">
+                <div class="cardw"><div class="thumb"></div><div class="cbody stack">
+                  <div class="ph dark" style="width:70%;height:9px"></div><div class="ph m"></div>
+                  <div class="h" style="justify-content:space-between;align-items:center;margin-top:4px"><div class="ph" style="width:44%"></div><div class="btnw" style="height:20px"><span class="cap">Abrir</span></div></div>
+                </div></div>
+                <div class="cardw"><div class="thumb"></div><div class="cbody stack">
+                  <div class="ph dark" style="width:62%;height:9px"></div><div class="ph m"></div>
+                  <div class="h" style="justify-content:space-between;align-items:center;margin-top:4px"><div class="ph" style="width:38%"></div><div class="btnw" style="height:20px"><span class="cap">Abrir</span></div></div>
+                </div></div>
+                <div class="cardw"><div class="thumb"></div><div class="cbody stack">
+                  <div class="ph dark" style="width:78%;height:9px"></div><div class="ph m"></div>
+                  <div class="h" style="justify-content:space-between;align-items:center;margin-top:4px"><div class="ph dark" style="width:52%"></div><div class="btnw" style="height:20px"><span class="cap">Ver</span></div></div>
+                </div></div>
+                <div class="cardw add">＋</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="rel" style="margin-top:16px">
+          <span class="cap" style="display:block;margin-bottom:7px">Estados de la tarjeta que el wireframe debe contemplar</span>
+          <div class="states">
+            <div class="statew"><div class="icon"></div><span class="cap">Sin vuelos cargados</span><div class="btnw" style="height:22px"><span class="cap">Cargar el primero</span></div></div>
+            <div class="statew"><div class="icon"></div><span class="cap">Procesando 64 %</span><div class="progress" style="width:100px"><i></i></div></div>
+            <div class="statew"><div class="icon"></div><span class="cap">Error de georreferencia</span><div class="ph" style="width:76%"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= LÁMINA 2 ================= -->
+  <section class="plate">
+    <div class="plate-head">
+      <span class="num">02</span>
+      <h2>Carga y parámetros de procesamiento</h2>
+      <span class="role">Configurar · ejecutar · esperar</span>
+    </div>
+    <div class="layout">
+      <div class="frame">
+        <div class="wf">
+          <div class="h appbar">
+            <div class="logo"></div>
+            <div class="ph dark" style="width:74px"></div>
+            <div class="sep"></div>
+            <div class="ph" style="width:140px"></div>
+            <div style="margin-left:auto;display:flex;gap:7px">
+              <div class="btnw"><span class="cap">Cancelar</span></div>
+              <div class="btnw solid"><span class="cap">Ejecutar</span></div>
+            </div>
+          </div>
+          <div style="padding:14px">
+            <div class="formw">
+              <div class="rel">
+                <div class="fsec">
+                  <span class="cap">Entrada</span>
+                  <div class="fieldw"><span class="cap">Ortomosaico (GeoTIFF)</span><div class="dropw"><span class="cap">Arrastrar archivo</span></div></div>
+                  <div class="fieldw"><span class="cap">CRS detectado — solo lectura</span><div class="inputw"><div class="ph" style="width:66%"></div></div></div>
+                  <div class="fieldw"><span class="cap">Resolución GSD — solo lectura</span><div class="inputw"><div class="ph s"></div></div></div>
+                  <div class="fieldw" style="margin-bottom:0"><span class="cap">Modelo de altura (CHM) — opcional</span><div class="inputw"><div class="ph m"></div></div></div>
+                </div>
+              </div>
+              <div class="rel">
+                <div class="fsec">
+                  <span class="cap">Modelo y parámetros</span>
+                  <div class="fieldw"><span class="cap">Arquitectura</span><div class="inputw"><div class="ph l"></div></div></div>
+                  <div class="fieldw"><span class="cap">Archivo de pesos</span><div class="inputw"><div class="ph m"></div></div></div>
+                  <div class="h" style="gap:9px">
+                    <div class="fieldw" style="flex:1"><span class="cap">Mosaico px</span><div class="inputw"><div class="ph s"></div></div></div>
+                    <div class="fieldw" style="flex:1"><span class="cap">Traslape %</span><div class="inputw"><div class="ph s"></div></div></div>
+                  </div>
+                  <div class="h" style="gap:9px">
+                    <div class="fieldw" style="flex:1;margin-bottom:0"><span class="cap">Confianza inicial</span><div class="inputw"><div class="ph s"></div></div></div>
+                    <div class="fieldw" style="flex:1;margin-bottom:0"><span class="cap">Área mínima m²</span><div class="inputw"><div class="ph s"></div></div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="rel" style="margin-top:12px">
+              <div class="fsec">
+                <span class="cap">Progreso de ejecución</span>
+                <div class="progress" style="margin-bottom:8px"><i></i></div>
+                <div class="h" style="justify-content:space-between;margin-bottom:10px"><div class="ph" style="width:130px"></div><div class="ph" style="width:88px"></div></div>
+                <div class="logw stack">
+                  <div class="ph l"></div><div class="ph xl"></div><div class="ph m"></div><div class="ph" style="width:72%;margin-bottom:0"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= LÁMINA 3 ================= -->
+  <section class="plate">
+    <div class="plate-head">
+      <span class="num">03</span>
+      <h2>Visor de resultados y corrección</h2>
+      <span class="role">Pantalla central del sistema</span>
+    </div>
+    <div class="layout">
+      <div class="frame">
+        <div class="wf">
+          <div class="h appbar">
+            <div class="logo"></div>
+            <div class="ph dark" style="width:74px"></div>
+            <div class="sep"></div>
+            <div class="ph" style="width:150px"></div>
+            <div style="margin-left:auto;display:flex;gap:7px;align-items:center">
+              <div class="ph" style="width:44px"></div><div class="sep"></div>
+              <div class="ph" style="width:44px"></div><div class="sep"></div>
+              <div class="btnw"><span class="cap">Validar</span></div>
+              <div class="btnw solid"><span class="cap">Exportar</span></div>
+            </div>
+          </div>
+
+          <div class="h viewer">
+            <!-- panel izquierdo -->
+            <div class="panel-l rel">
+              <span class="cap">Capas</span>
+              <div class="rowline"><span class="chk on"></span><div class="ph" style="width:74%"></div></div>
+              <div class="rowline"><span class="chk"></span><div class="ph" style="width:58%"></div></div>
+              <div class="rowline"><span class="chk on"></span><div class="ph" style="width:66%"></div></div>
+              <div class="rowline"><span class="chk on"></span><div class="ph" style="width:70%"></div></div>
+              <span class="cap" style="display:block;margin-top:9px">Opacidad</span>
+              <div class="slider"></div>
+              <div class="divider"></div>
+              <span class="cap">Filtros</span>
+              <div class="h" style="justify-content:space-between;margin-top:7px"><div class="ph" style="width:56%"></div><div class="ph" style="width:22%"></div></div>
+              <div class="slider"></div>
+              <div class="h" style="justify-content:space-between;margin-top:7px"><div class="ph" style="width:48%"></div><div class="ph" style="width:22%"></div></div>
+              <div class="slider"></div>
+              <div class="divider"></div>
+              <span class="cap">Conteo por estado</span>
+              <div class="rowline"><div class="ph" style="width:52%"></div><div class="ph dark" style="width:24px;margin-left:auto"></div></div>
+              <div class="rowline"><div class="ph" style="width:46%"></div><div class="ph dark" style="width:24px;margin-left:auto"></div></div>
+              <div class="rowline"><div class="ph" style="width:50%"></div><div class="ph dark" style="width:24px;margin-left:auto"></div></div>
+            </div>
+
+            <!-- lienzo -->
+            <div class="canvas rel">
+              <div class="tools"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+              <div class="lbl-c">Lienzo de mapa<br>ortomosaico + polígonos de copa</div>
+              <div class="chip-tr stack">
+                <div class="ph dark" style="width:60%"></div>
+                <div class="ph l"></div><div class="ph m"></div><div class="ph l"></div><div class="ph" style="width:70%;margin-bottom:0"></div>
+              </div>
+              <div class="chip-bl scale"><div class="ph" style="width:34px;margin-bottom:3px;margin-left:auto"></div><i></i></div>
+              <div class="chip-br"><div class="ph" style="width:104px"></div></div>
+            </div>
+
+            <!-- panel derecho -->
+            <div class="panel-r rel">
+              <span class="cap">Copa seleccionada</span>
+              <div class="ph dark" style="width:56%;height:11px;margin:6px 0 8px"></div>
+              <div class="box" style="height:56px;margin-bottom:10px"></div>
+              <div class="rowline" style="justify-content:space-between"><div class="ph" style="width:52%"></div><div class="ph dark" style="width:26%"></div></div>
+              <div class="rowline" style="justify-content:space-between"><div class="ph" style="width:44%"></div><div class="ph dark" style="width:26%"></div></div>
+              <div class="rowline" style="justify-content:space-between"><div class="ph" style="width:50%"></div><div class="ph dark" style="width:26%"></div></div>
+              <div class="rowline" style="justify-content:space-between"><div class="ph" style="width:40%"></div><div class="ph dark" style="width:26%"></div></div>
+              <div class="divider"></div>
+              <span class="cap">Acciones de corrección</span>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-top:8px">
+                <div class="btnw" style="height:22px"><span class="cap">Confirmar</span></div>
+                <div class="btnw" style="height:22px"><span class="cap">Descartar</span></div>
+                <div class="btnw" style="height:22px"><span class="cap">Editar</span></div>
+                <div class="btnw" style="height:22px"><span class="cap">Dividir</span></div>
+                <div class="btnw" style="height:22px;grid-column:1/-1"><span class="cap">Marcar para campo</span></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="h statusbar rel">
+            <div class="c stack"><div class="ph" style="width:52px;height:5px"></div><div class="ph dark" style="width:34px;height:8px"></div></div>
+            <div class="c stack"><div class="ph" style="width:44px;height:5px"></div><div class="ph dark" style="width:48px;height:8px"></div></div>
+            <div class="c stack"><div class="ph" style="width:58px;height:5px"></div><div class="ph dark" style="width:38px;height:8px"></div></div>
+            <div class="c stack"><div class="ph" style="width:50px;height:5px"></div><div class="ph dark" style="width:40px;height:8px"></div></div>
+            <div style="margin-left:auto"><div class="ph" style="width:150px"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= LÁMINA 4 ================= -->
+  <section class="plate">
+    <div class="plate-head">
+      <span class="num">04</span>
+      <h2>Validación contra parcelas de campo y exportación</h2>
+      <span class="role">Evidencia · salida</span>
+    </div>
+    <div class="layout">
+      <div class="frame">
+        <div class="wf">
+          <div class="h appbar">
+            <div class="logo"></div>
+            <div class="ph dark" style="width:74px"></div>
+            <div class="sep"></div>
+            <div class="ph" style="width:150px"></div>
+            <div style="margin-left:auto;display:flex;gap:7px">
+              <div class="btnw"><span class="cap">Volver</span></div>
+              <div class="btnw solid"><span class="cap">Reporte PDF</span></div>
+            </div>
+          </div>
+          <div style="padding:14px">
+            <div class="stack" style="margin-bottom:13px">
+              <div class="ph dark" style="width:190px;height:11px"></div>
+              <div class="ph m"></div>
+            </div>
+            <div class="rel">
+              <div class="stats">
+                <div class="statw"><div class="ph" style="width:54%;height:6px"></div><div class="bignum"></div><div class="ph l"></div></div>
+                <div class="statw"><div class="ph" style="width:62%;height:6px"></div><div class="bignum"></div><div class="ph l"></div></div>
+                <div class="statw"><div class="ph" style="width:34%;height:6px"></div><div class="bignum"></div><div class="ph m"></div></div>
+                <div class="statw"><div class="ph" style="width:50%;height:6px"></div><div class="bignum"></div><div class="ph l"></div></div>
+              </div>
+            </div>
+            <div class="split">
+              <div class="rel">
+                <div class="tablew">
+                  <span class="cap" style="display:block;margin-bottom:8px">Resultado por parcela</span>
+                  <div class="trow head"><div class="ph" style="width:60%"></div><div class="ph"></div><div class="ph"></div><div class="ph"></div><div class="ph"></div><div class="ph"></div></div>
+                  <div class="trow"><div class="ph" style="width:82%"></div><div class="ph"></div><div class="ph"></div><div class="ph"></div><div class="ph"></div><div class="ph"></div></div>
+                  <div class="trow"><div class="ph" style="width:70%"></div><div class="ph"></div><div class="ph"></div><div class="ph"></div><div class="ph"></div><div class="ph"></div></div>
+                  <div class="trow"><div class="ph" style="width:76%"></div><div class="ph"></div><div class="ph"></div><div class="ph"></div><div class="ph"></div><div class="ph"></div></div>
+                  <div class="trow"><div class="ph" style="width:64%"></div><div class="ph"></div><div class="ph"></div><div class="ph"></div><div class="ph"></div><div class="ph"></div></div>
+                  <div class="trow"><div class="ph" style="width:74%"></div><div class="ph"></div><div class="ph"></div><div class="ph"></div><div class="ph"></div><div class="ph"></div></div>
+                  <div class="trow"><div class="ph" style="width:58%"></div><div class="ph"></div><div class="ph"></div><div class="ph"></div><div class="ph"></div><div class="ph"></div></div>
+                  <div style="margin-top:9px"><div class="ph l"></div></div>
+                </div>
+              </div>
+              <div>
+                <div class="chartw">
+                  <span class="cap" style="display:block;margin-bottom:8px">Distribución de diámetros</span>
+                  <div class="bars">
+                    <i style="height:26%"></i><i style="height:52%"></i><i style="height:84%"></i><i style="height:100%"></i>
+                    <i style="height:72%"></i><i style="height:46%"></i><i style="height:24%"></i><i style="height:12%"></i>
+                  </div>
+                </div>
+                <div class="rel">
+                  <div class="chartw" style="margin-bottom:0">
+                    <span class="cap" style="display:block;margin-bottom:5px">Exportar</span>
+                    <div class="ph l" style="margin-bottom:9px"></div>
+                    <div class="expw">
+                      <div class="btnw"><span class="cap">GeoJSON</span></div>
+                      <div class="btnw"><span class="cap">Shapefile</span></div>
+                      <div class="btnw"><span class="cap">GeoPackage</span></div>
+                      <div class="btnw"><span class="cap">CSV</span></div>
+                      <div class="btnw"><span class="cap">GeoTIFF</span></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CIERRE ================= -->
+  <section class="closing">
+    <h3>Cómo usar estas láminas</h3>
+    <ol>
+      <li><b>Valide el flujo antes que el detalle.</b> Enséñeselas a su tutor o a alguien que trabaje con datos UAV y pregunte solo una cosa: ¿falta alguna pantalla o algún paso? Es más barato descubrirlo aquí.</li>
+      <li><b>Recorte lo que no va a implementar.</b> Si su alcance no incluye CHM ni clasificación de especies, bórrelos del wireframe. Un wireframe que promete de más se convierte en una defensa incómoda.</li>
+      <li><b>Describa cada lámina en el texto, no sobre la imagen.</b> El wireframe muestra la estructura; el capítulo de diseño explica por qué se tomó cada decisión.</li>
+      <li><b>Después vuelva al mockup.</b> El orden natural es wireframe → validación con el tutor → mockup de alta fidelidad → implementación.</li>
+    </ol>
+  </section>
+
+</div>
+</body>
+</html>
